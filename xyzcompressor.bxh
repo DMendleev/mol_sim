@@ -1,0 +1,40 @@
+#!/bin/bash
+
+in=movie.xyz #initial XYZ file
+outxyz=frame1.xyz #initial frame of XYZ to load movie into
+outmov=traj.dcd
+nbead=`grep -A1 nbead input.dat | tail -1 | awk '{print $1}'`
+nbead=$((nbead+2)) #xyz files have nbead + 2 lines
+
+len=`wc -l $in | awk '{print $1}'`
+nframe=$((len/nbead)) #this should be an integer, so doing int math should be ok
+
+#1. Split the XYZ
+x=1
+which=" "
+while [ $x -le $nframe ]
+do
+	echo "$x/$nframe"
+	head -$nbead $in | tail -$nbead > temp$x.xyz
+	if [ $x -gt 1 ]; then
+		which="$which temp$x.xyz "
+	fi
+	x=$((x+1))
+done
+
+#2. Create DCD trajectory file
+query="catdcd -o $outmov -xyz $which"
+
+$query
+
+#3. Save initial frame
+mv temp1.xyz frame1.xyz
+
+#4. Delete intermediate xyz files
+x=1
+while [ $x -le $nframe ]
+do
+	rm temp$x.xyz
+	x=$((x+1))
+done
+
