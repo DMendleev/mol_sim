@@ -38,19 +38,19 @@ subroutine initia(nbead,initrandom)
    !write(6,*) 'assign pair interactions'
 
    
-     open(unit=51,action='read',file='interaction.dat',status='old')
+!     open(unit=51,action='read',file='interaction.dat',status='old')
    
 
-   do i=1,nbead
-      do j=i,nbead
-            read(51,*) jij(i,j)
+!   do i=1,nbead
+!      do j=i,nbead
+!            read(51,*) jij(i,j)
          
          !write(6,*) jij(i,j)
-         jij(j,i) = jij(i,j)
-      enddo
-   enddo
+!         jij(j,i) = jij(i,j)
+!      enddo
+!   enddo
 
-     close(51)
+!     close(51)
 
 ! Decide to initialize randomly or in line
  if(initrandom .eqv. .false.) then

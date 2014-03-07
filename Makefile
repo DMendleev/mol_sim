@@ -14,8 +14,8 @@ intel: $(FILES)
 
 #  ---------------------
 gnu:	$(FILES)
-##	/opt/local/bin/gfortran-mp-4.7  $(FILES) -o $(LOC)/$(EXE)
-	/usr/bin/gfortran -ggdb $(FILES) -o $(LOC)/$(EXE)
+	/opt/local/bin/gfortran-mp-4.7  $(FILES) -o $(LOC)/$(EXE)
+##	/usr/bin/gfortran -ggdb $(FILES) -o $(LOC)/$(EXE)
 #	gfortran -c -ggdb sumup.f90
 #	gfortran -c -ggdb moves.f90
 #	gfortran -c -ggdb main.f90
