@@ -23,4 +23,4 @@ gnu:	$(FILES)
 
 #  ---------------------
 clean:
-	rm -f $(LOC)/$(EXE) *.mod *.o $(LOC)/*.out config.dat results.dat
+	rm -f $(LOC)/$(EXE) *.mod *.o $(LOC)/*.out movie.xyz polymer.dat config_final.dat config.dat results.dat dum.dat
