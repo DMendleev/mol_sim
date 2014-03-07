@@ -5,5 +5,7 @@ Run by:
 
 git fetch (to see if there are changes)
 git pull  (to pull from online version)
+
+git add filename (to add a file) 
 git push  (to push to online version)
 
