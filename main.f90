@@ -10,7 +10,7 @@ PROGRAM main
    USE moves
    USE util
    USE util_random
-   
+!!!!!!!!!!!!!!!!!!!!!!   
    IMPLICIT NONE
    SAVE
 
