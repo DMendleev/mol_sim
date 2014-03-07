@@ -1,5 +1,9 @@
 Compile code by:
 "make gnu"
 Run by:
-"./solidargone.exe"
+"./polymer.exe"
+
+git fetch (to see if there are changes)
+git pull  (to pull from online version)
+git push  (to push to online version)
 
