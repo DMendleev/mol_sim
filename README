@@ -10,3 +10,8 @@ git add filename (to add a file)
 git commit -m 'message' (makes your changes ready to be pushed)
 git push  (to push to online version)
 
+
+This should always work to submit changes
+git add *
+git commit -a
+git push
