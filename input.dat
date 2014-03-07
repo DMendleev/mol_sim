@@ -6,10 +6,8 @@ t (Temperature / k_b)
 1.0
 nbead (Number of beeds)
 20
-linit (True = initialize, false = read from config.dat)  ###  new_polymer
-.false. 			 				        .false.
-writeintr (true = write to interaction.dat)
-false
+linit (True = initialize, false = read from config.dat)
+.false. 			 		
 initrandom(False = initiate as a line, True = initiate with random walk)
 .false.
 pmreptation ### pmpivot

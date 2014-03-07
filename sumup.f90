@@ -89,7 +89,7 @@ contains
 
          Rend  = dot_product(vec,vec)
 
-	return
+         return
      END SUBROUTINE PROPERTIES
 
 !*****************************************************************************************!

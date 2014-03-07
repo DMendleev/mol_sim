@@ -9,11 +9,11 @@ save
 public:: initia,pivot,slither,random_init
 
 contains
-subroutine initia(nbead,initrandom,new_protein)
+subroutine initia(nbead,initrandom)
 
    integer::nbead,i,j
    integer,dimension(1)::nseed
-   logical::initrandom,new_protein
+   logical::initrandom
 
    allocate(x(nbead))
    allocate(y(nbead))
