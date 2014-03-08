@@ -1,146 +1,120 @@
-module moves
-use sumup
-use variables
-use util_random,only:random
-use util
-implicit none
-private
-save
-public:: initia,pivot,slither,random_init
+MODULE moves
 
-contains
-subroutine initia(nbead,initrandom)
-
-   integer::nbead,i,j
-   integer,dimension(1)::nseed
-   logical::initrandom
-
-   allocate(x(nbead))
-   allocate(y(nbead))
-   allocate(z(nbead))
-   !allocate(moltyp(nbead))
-   allocate(jij(nbead,nbead))
-
-! assign type for each bead
-!   if(new_protein) then
-!      do i=1,nbead
-!         moltyp(i) = int(20.0*random() + 1.0)
-!      enddo
-!   else
-!      open(unit=21,action='read',file='polymer.dat',status='old')
-!      do i=1,nbead
-!         read(21,*) moltyp(i)
-!      enddo
-!      close(21)
-!   endif
-
-! assign J(i,j) for each possible pair of beads
-   !write(6,*) 'assign pair interactions'
-
+   USE sumup
+   USE variables
+   USE util_random,only:random
+   USE util
    
-     open(unit=51,action='read',file='interaction.dat',status='old')
+   IMPLICIT NONE
+   PRIVATE
+   SAVE
    
-
-   do i=1,nbead
-      do j=i,nbead
-            read(51,*) jij(i,j)
-         
-         !write(6,*) jij(i,j)
-         jij(j,i) = jij(i,j)
-      enddo
-   enddo
-
-     close(51)
-
-! Decide to initialize randomly or in line
- if(initrandom .eqv. .false.) then
-
-! place beads in a line   
-   !write(6,*) 'place beads in line'
-   do i=1,nbead
-      x(i) = nbead
-      y(i) = i
-      z(i) = nbead
-   enddo
- else
-  call random_init(nbead) 
-   !write(6,*) 'placed beads randomly'
- endif
-!  determine com
-   call determineCOM(nbead) 
+   public:: initia,pivot,slither,random_init
    
-   !write(6,*) 'initialization complete'
-   return
-end subroutine initia
+   contains
 
-subroutine random_init(nbead)
+   subroutine initia(nbead,initrandom)
 
-   integer::nbead, i, j
-   real::rwalk
-   logical::overlap
-   x(1) = nbead
-   y(1) = 1
-   z(1) = nbead
-   overlap = .true.
-   do i = 2, nbead
-        !write(6,*) 'i=',i
-        overlap = .true.
-        do while (overlap .eqv. .true.)
-         rwalk = random()*6.0
-         !write(6,*) 'rand=',rwalk
-         if (rwalk < 1) then
-            x(i) = x(i-1) - 1
-            y(i) = y(i-1)
-            z(i) = z(i-1)
-         else if (rwalk < 2)then
-            x(i) = x(i-1) + 1
-            y(i) = y(i-1)
-            z(i) = z(i-1)
-         else if (rwalk < 3) then
-            y(i) = y(i-1) - 1
-            x(i) = x(i-1)
-            z(i) = z(i-1)
-         else if (rwalk < 4) then
-            y(i) = y(i-1) + 1
-            x(i) = x(i-1)
-            z(i) = z(i-1)
-         else if (rwalk < 5) then
-            z(i) = z(i-1) - 1
-            y(i) = y(i-1)
-            x(i) = x(i-1)
-         else
-            z(i) = z(i-1) + 1
-            y(i) = y(i-1)
-            x(i) = x(i-1)
-         endif
-         !write(6,*) 'going to ',x(i),y(i),z(i)
-         do j = 1, i-1 
-            !write(6,*) 'j=',j
-         !Check for overlap
-         !If overlap, redo point selection, overlap true 
-         !If no overlap, overlap false, go to next point
-            if (x(i) == x(j) .AND. y(i) == y(j) .AND. z(i) == z(j)) then
-               !write(6,*) 'rejected: overlap'
-               overlap = .true.
-               exit 
-            else
-               !write(6,*) 'accepted'
-               overlap = .false.
-            endif
+      INTEGER                      :: nbead, i, j
+      INTEGER, DIMENSION(1)        :: nseed
+      LOGICAL                      :: initrandom
+
+      allocate(x(nbead))
+      allocate(y(nbead))
+      allocate(z(nbead))
+      allocate(jij(nbead,nbead))
+
+
+      ! Decide to initialize randomly or in line
+       if(initrandom .eqv. .false.) then
+         do i=1,nbead
+            x(i) = i-1
+            y(i) = nbead/2
+            z(i) = nbead/2
          enddo
-         !write(6,*) 'overlap check complete'
+       else
+         call random_init(nbead) 
+       endif
+      !  determine com
+      call determineCOM(nbead) 
+   
+      return
+
+   end subroutine initia
+
+   subroutine random_init(nbead)
+
+      INTEGER                   :: nbead, i, j
+      REAL                      :: rwalk
+      LOGICAL                   :: overlap
+     
+      x(1) = nbead
+      y(1) = 1
+      z(1) = nbead
+      overlap = .true.
+      do i = 2, nbead
+           !write(6,*) 'i=',i
+           overlap = .true.
+           do while (overlap .eqv. .true.)
+            rwalk = random()*6.0
+            !write(6,*) 'rand=',rwalk
+            if (rwalk < 1) then
+               x(i) = x(i-1) - 1
+               y(i) = y(i-1)
+               z(i) = z(i-1)
+            else if (rwalk < 2)then
+               x(i) = x(i-1) + 1
+               y(i) = y(i-1)
+               z(i) = z(i-1)
+            else if (rwalk < 3) then
+               y(i) = y(i-1) - 1
+               x(i) = x(i-1)
+               z(i) = z(i-1)
+            else if (rwalk < 4) then
+               y(i) = y(i-1) + 1
+               x(i) = x(i-1)
+               z(i) = z(i-1)
+            else if (rwalk < 5) then
+               z(i) = z(i-1) - 1
+               y(i) = y(i-1)
+               x(i) = x(i-1)
+            else
+               z(i) = z(i-1) + 1
+               y(i) = y(i-1)
+               x(i) = x(i-1)
+            endif
+            !write(6,*) 'going to ',x(i),y(i),z(i)
+            do j = 1, i-1 
+               !write(6,*) 'j=',j
+            !Check for overlap
+            !If overlap, redo point selection, overlap true 
+            !If no overlap, overlap false, go to next point
+               if (x(i) == x(j) .AND. y(i) == y(j) .AND. z(i) == z(j)) then
+                  !write(6,*) 'rejected: overlap'
+                  overlap = .true.
+                  exit 
+               else
+                  !write(6,*) 'accepted'
+                  overlap = .false.
+               endif
+            enddo
+            !write(6,*) 'overlap check complete'
+         enddo
       enddo
-   enddo
 
 
-end subroutine random_init
+   end subroutine random_init
 
-subroutine pivot(nbead,engmovetot,t,didimove)
+!------------------------------------------------------------------------------!
+!                                PIVOT MOVE                                    !
+!------------------------------------------------------------------------------!
 
-   integer::i,j,k,nbead,beadrot, lcv, overlap
-   integer,allocatable::xo(:),yo(:),zo(:),xm(:),ym(:),zm(:),xmo(:),ymo(:),zmo(:)
-   real::t,diff,real,engo,engn,engmovetot,rm,rg,endtoend,rg2,rend
-   logical::didimove,totheleft,clockw
+   SUBROUTINE pivot(nbead,engmovetot,t,didimove)
+
+   INTEGER                  :: i, j, k, nbead, beadrot, lcv, overlap
+   INTEGER, ALLOCATABLE     :: xo(:), yo(:), zo(:), xm(:), ym(:), zm(:), xmo(:), ymo(:), zmo(:)
+   REAL                     :: t, diff, real, engo, engn, engmovetot, rm, rg, endtoend, rg2, rend
+   LOGICAL                  :: didimove, totheleft, clockw
 
    allocate(xo(nbead)); allocate(yo(nbead)); allocate(zo(nbead))
    allocate(xm(nbead)); allocate(ym(nbead)); allocate(zm(nbead))
@@ -292,38 +266,35 @@ subroutine pivot(nbead,engmovetot,t,didimove)
       enddo
    enddo
 
-!calculate energy in new config.
-if(overlap==0)then
-   call totenergy(nbead,engn)  
-   diff = engn - engo
-   if (diff .le. 0.0) then
-       engmovetot = engn
-       didimove = .true.
-   else if(exp(-diff/t) .gt. random()) then
-       engmovetot = engn
-       didimove = .true.
-   else
-      do i=1,nbead
-         x(i) = xo(i)
-         y(i) = yo(i)
-         z(i) = zo(i)
-      enddo
-      !write(6,*) 'rejected: boltz=',exp(-diff/t),'acc=',acc
-      didimove = .false.
-       engmovetot = engo
-      return
+   !calculate energy in new config.
+   if(overlap==0)then
+      call totenergy(nbead,engn)  
+      diff = engn - engo
+      if (diff .le. 0.0) then
+          engmovetot = engn
+          didimove = .true.
+      else if(exp(-diff/t) .gt. random()) then
+          engmovetot = engn
+          didimove = .true.
+      else
+         do i=1,nbead
+            x(i) = xo(i)
+            y(i) = yo(i)
+            z(i) = zo(i)
+         enddo
+         !write(6,*) 'rejected: boltz=',exp(-diff/t),'acc=',acc
+         didimove = .false.
+          engmovetot = engo
+         return
+      endif
    endif
-endif
-  !write(6,*) 'accepted: overlap'  
-!  engmovetot = diff + engo
-!  call PROPERTIES(nbead, rg, endtoend)
-!  rg2 = rg
-!  rend = endtoend 
-  
-! recenter
-!  call recenter(nbead)
-end subroutine pivot
 
+
+   end subroutine pivot
+
+!-----------------------------------------------------------------------!
+!                     REPTATION(SLITHER) MOVE                           !
+!-----------------------------------------------------------------------!
 
  SUBROUTINE slither(nbead,engmovetot, t, didimove)
 
@@ -397,18 +368,6 @@ end subroutine pivot
            end do
    
            if(saw == 0)then
-      !        call totenergy(nbead,engn)
-      !        P_acc  =exp(-(engn - engo)/t)
-      !        if(random().lt.P_acc)then
-      !           x = rx_trial
-      !           y = ry_trial
-      !           z = rz_trial
-      !           didimove = .true.
-      !           engmovetot = engn
-      !        else
-      !           didimove = .false.
-      !        endif
-
                   x = rx_trial
                   y = ry_trial
                   z = rz_trial
@@ -427,9 +386,7 @@ end subroutine pivot
               didimove = .false.
            endif
 
-!         rg2 = 0
-!         rend = 0
-!         call properties(nbead, rg2, rend)
 
          END SUBROUTINE slither
-end module moves
+
+END MODULE  moves

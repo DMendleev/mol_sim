@@ -1,5 +1,5 @@
 random seed 
-73467
+342
 nstep (Number of steps)
 1000000
 t (Temperature / k_b)
@@ -9,8 +9,8 @@ nbead (Number of beeds)
 linit (True = initialize, false = read from config.dat)
 .false. 			 		
 initrandom(False = initiate as a line, True = initiate with random walk)
-.false.
+.true.
 pmreptation ### pmpivot
-   0.0		   1.0
+   0.5		  1.0
 mono ### diblock ### triblock
 .false.   .true.      .false.

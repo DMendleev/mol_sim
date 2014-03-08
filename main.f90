@@ -10,14 +10,15 @@ PROGRAM main
    USE moves
    USE util
    USE util_random
-!!!!!!!!!!!!!!!!!!!!!!   
+   
    IMPLICIT NONE
    SAVE
 
    LOGICAL             :: linit, didimove, initrandom
    INTEGER             :: i, j, nstep, nbead,length, avlength
-   REAL                :: t, energy, engmove, engmovetot, aveng, rm, rg2
-   REAL                :: rend, rg, averg2, averend, endtoend, rg2tot, rendtot
+   REAL                :: t, energy, engmove, engmovetot, aveng, rm
+   REAL                :: rg2, rg2_para, rg2_perp, rend, rend_para, rend_perp
+   REAL                :: rg2tot, rg2tot_para, rg2tot_perp, rendtot, rendtot_para, rendtot_perp
    INTEGER             :: iounit, rx, ry, rz, check_condition, c, naccept, sample
    INTEGER             :: vec(3)
 
@@ -82,7 +83,7 @@ PROGRAM main
    do i = 1,nstep
       rm = random()
       if (rm <= pmreptation) then
-         call slither(nbead, engmove, t, didimove)
+         call slither(nbead, engmovetot, t, didimove)
          if (didimove .eqv. .true.) then
              naccept = naccept + 1
              energy  = energy + engmovetot
@@ -100,9 +101,13 @@ PROGRAM main
       endif
 
       if(mod(i,sample)==0)then
-         call properties(nbead, rg2, rend)      
-         rg2tot = rg2tot + rg2
-         rendtot = rendtot + rend
+         call properties(nbead, rg2, rg2_para, rg2_perp, rend, rend_para, rend_perp)      
+         rg2tot       = rg2tot + rg2
+         rg2tot_para  = rg2tot_para + rg2_para
+         rg2tot_perp  = rg2tot_perp + rg2_perp
+         rendtot      = rendtot + rend
+         rendtot_para = rendtot_para + rend_para
+         rendtot_perp = rendtot_perp + rend_perp
       end if
    
       check_condition = 0
@@ -124,23 +129,33 @@ PROGRAM main
    do i=1,nbead
       write(77,*) x(i),y(i),z(i)
    enddo
-   write(77,*) engmove
+   write(77,*) engmovetot
    
-   call PROPERTIES(nbead, rg2, rend)
-   averg2  = rg2tot / (nstep)*sample
-   averend = rendtot / (nstep)*sample
-   aveng   = engmovetot/(nstep)*sample
+!   call PROPERTIES(nbead, rg2, rend)
+   rg2tot       = rg2tot / (nstep)*sample
+   rg2tot_para  = rg2tot_para / (nstep)*sample
+   rg2tot_perp  = rg2tot_perp / (nstep)*sample
+   rendtot      = rendtot / (nstep)*sample
+   rendtot_para = rendtot_para / (nstep)*sample
+   rendtot_perp = rendtot_perp / (nstep)*sample
+   energy       = energy/(nstep)
 
-   write(13,*) 'nseed = ', nseed
-   write(13,*) 'Temperature [J/kb] = ', t
-   write(13,*) 'nstep = ', nstep
-   write(13,*) 'Energy = ', aveng
-   write(13,*) 'RADIUSG= ', rg2
-   write(13,*) 'endtoend= ', rend
-   write(13,*) 'average rg2= ', averg2
-   write(13,*) 'average rend ', averend
-   write(13,*) 'Acceptance Percentage ', real(naccept)/real(nstep)*100
-  
+   write(13,*)'-------------------------------------------------------------'
+   write(13,*)'                           RESULTS                           '
+   write(13,*)'-------------------------------------------------------------'
+   write(13,*) '|  1. Seed                              = ', nseed
+   write(13,*) '|  2. Temperature [J/kb]                = ', t
+   write(13,*) '|  3. Number of Steps                   = ', nstep
+   write(13,*) '|  4. Energy                            = ', energy
+   write(13,*) '|  5. Rg2  - entire chain               = ', rg2tot
+   write(13,*) '|  6. Rg2  - parallel to field          = ', rg2tot_para
+   write(13,*) '|  7. Rg2  - perpendicular to field     = ', rg2tot_perp
+   write(13,*) '|  8. Rend - entire chain               = ', rendtot
+   write(13,*) '|  9. Rend - parallel to field          = ', rendtot_para
+   write(13,*) '| 10. Rend - perpendicular to field     = ', rendtot_perp
+   write(13,*) '| 11. Acceptance Percentage             = ', real(naccept)/real(nstep)*100
+   write(13,*)'----- --------------------------------------------------------'
+   
    close(77)
    close(13)   
    close(99)
