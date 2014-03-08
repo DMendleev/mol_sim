@@ -21,37 +21,6 @@ subroutine initia(nbead,initrandom)
    !allocate(moltyp(nbead))
    allocate(jij(nbead,nbead))
 
-! assign type for each bead
-!   if(new_protein) then
-!      do i=1,nbead
-!         moltyp(i) = int(20.0*random() + 1.0)
-!      enddo
-!   else
-!      open(unit=21,action='read',file='polymer.dat',status='old')
-!      do i=1,nbead
-!         read(21,*) moltyp(i)
-!      enddo
-!      close(21)
-!   endif
-
-! assign J(i,j) for each possible pair of beads
-   !write(6,*) 'assign pair interactions'
-
-   
-!     open(unit=51,action='read',file='interaction.dat',status='old')
-   
-
-!   do i=1,nbead
-!      do j=i,nbead
-!            read(51,*) jij(i,j)
-         
-         !write(6,*) jij(i,j)
-!         jij(j,i) = jij(i,j)
-!      enddo
-!   enddo
-
-!     close(51)
-
 ! Decide to initialize randomly or in line
  if(initrandom .eqv. .false.) then
 
@@ -131,8 +100,6 @@ subroutine random_init(nbead)
          !write(6,*) 'overlap check complete'
       enddo
    enddo
-
-
 end subroutine random_init
 
 subroutine pivot(nbead,engmovetot,t,didimove)
@@ -315,15 +282,10 @@ if(overlap==0)then
    endif
 endif
   !write(6,*) 'accepted: overlap'  
-!  engmovetot = diff + engo
-!  call PROPERTIES(nbead, rg, endtoend)
-!  rg2 = rg
-!  rend = endtoend 
   
 ! recenter
 !  call recenter(nbead)
 end subroutine pivot
-
 
  SUBROUTINE slither(nbead,engmovetot, t, didimove)
 
