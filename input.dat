@@ -14,5 +14,5 @@ pmreptation ### pmpivot
    0.0		   1.0
 mono ### diblock ### triblock
 .true.   .false.      .false.
-sample
+sample (how many steps in between configurations used for data)
 200
