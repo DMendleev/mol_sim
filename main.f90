@@ -24,7 +24,6 @@ PROGRAM main
    open(unit=11,action='read',file='input.dat',status='old')
    open(unit=13,action='write',file='results.dat')
    open(unit=42,action='write',file='movie.xyz')
-   open(unit=12,action='read',file='config_final.dat',status='old')
 
    iounit = 11
 
@@ -44,11 +43,12 @@ PROGRAM main
    read(iounit,*) pmreptation,pmpivot
    read(iounit,*) 
    read(iounit,*) mono, diblock, triblock
+   read(iounit,*)
+   read(iounit,*) sample  
    close(iounit)
   
     
    L  = nbead
-   sample = 200
    naccept = 0
 
    dir(:,1)  = (/1,0,0/) 
@@ -64,10 +64,11 @@ PROGRAM main
       call initia(nbead,initrandom)
       call totenergy(nbead,energy)
    else
+      open(unit=12,action='read',file='config_final.dat',status='old')
       allocate(x(nbead),y(nbead),z(nbead),jij(nbead,nbead))
-       do i=1,nbead
-         read(12,*) x(i),y(i),z(i)
-       enddo
+          do i=1,nbead
+          read(12,*) x(i),y(i),z(i)
+          enddo
       read(12,*) energy
    endif
 

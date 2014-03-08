@@ -1,0 +1,80 @@
+GFORTRAN module version '9' created from variables.f90
+MD5:60d9ecdab6a6f09d5042d35105554444 -- If you edit this, you'll get what you deserve.
+
+(() () () () () () () () () () () () () () () () () () () () () () () ()
+() () ())
+
+()
+
+()
+
+()
+
+()
+
+()
+
+(2 'aname' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0 DIMENSION) (CHARACTER 1 0 0 0 CHARACTER ((
+CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '50'))) 0 0 () (1 0 EXPLICIT (
+CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0 0
+INTEGER ()) 0 '20')) 0 () () () 0 0)
+3 'diblock' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (LOGICAL 4 0 0 0 LOGICAL ()) 0 0 () () 0 () ()
+() 0 0)
+4 'dir' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0 DIMENSION) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () (2 0
+EXPLICIT (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1') (CONSTANT (
+INTEGER 4 0 0 0 INTEGER ()) 0 '3') (CONSTANT (INTEGER 4 0 0 0 INTEGER ())
+0 '1') (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '6')) 0 () () () 0 0)
+5 'icom' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+6 'jij' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0 ALLOCATABLE DIMENSION) (REAL 4 0 0 0 REAL ()) 0 0 () (
+2 0 DEFERRED () () () ()) 0 () () () 0 0)
+7 'l' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+8 'mono' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0) (LOGICAL 4 0 0 0 LOGICAL ()) 0 0 () () 0 () () () 0 0)
+9 'nseed' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () ()
+() 0 0)
+10 'pi' 'variables' '' 1 ((PARAMETER UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+IMPLICIT-SAVE 0 0) (REAL 4 0 0 0 REAL ()) 0 0 () (CONSTANT (REAL 4 0 0 0
+REAL ()) 0 '0.3243e84@1') () 0 () () () 0 0)
+11 'pmpivot' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (REAL 4 0 0 0 REAL ()) 0 0 () () 0 () () () 0
+0)
+12 'pmreptation' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (REAL 4 0 0 0 REAL ()) 0 0 () () 0 () () () 0
+0)
+13 'triblock' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (LOGICAL 4 0 0 0 LOGICAL ()) 0 0 () () 0 () ()
+() 0 0)
+14 'variables' 'variables' '' 1 ((MODULE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN UNKNOWN 0 0) (UNKNOWN 0 0 0 0 UNKNOWN ()) 0 0 () () 0 () () () 0
+0)
+15 'x' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0 ALLOCATABLE DIMENSION) (INTEGER 4 0 0 0 INTEGER ()) 0
+0 () (1 0 DEFERRED () ()) 0 () () () 0 0)
+16 'xcom0' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () ()
+() 0 0)
+17 'y' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0 ALLOCATABLE DIMENSION) (INTEGER 4 0 0 0 INTEGER ()) 0
+0 () (1 0 DEFERRED () ()) 0 () () () 0 0)
+18 'ycom0' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () ()
+() 0 0)
+19 'z' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0 ALLOCATABLE DIMENSION) (INTEGER 4 0 0 0 INTEGER ()) 0
+0 () (1 0 DEFERRED () ()) 0 () () () 0 0)
+20 'zcom0' 'variables' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () ()
+() 0 0)
+)
+
+('aname' 0 2 'diblock' 0 3 'dir' 0 4 'icom' 0 5 'jij' 0 6 'l' 0 7 'mono'
+0 8 'nseed' 0 9 'pi' 0 10 'pmpivot' 0 11 'pmreptation' 0 12 'triblock' 0
+13 'variables' 0 14 'x' 0 15 'xcom0' 0 16 'y' 0 17 'ycom0' 0 18 'z' 0 19
+'zcom0' 0 20)
