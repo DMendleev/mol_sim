@@ -84,8 +84,8 @@ MODULE sumup
              
              Rg2_para = Rg2_para + (x(j)-R_cm(1))**2
  
-             Rg2_perp = Rg2_perp + (y(j)-R_cm(2))**2 &
-                                 + (z(j)-R_cm(3))**2
+             Rg2_perp = Rg2_perp + ((y(j)-R_cm(2))**2 &
+                                 + (z(j)-R_cm(3))**2)/2
           end do
 
          Rg2        = Rg2/real(nbead)
@@ -98,7 +98,7 @@ MODULE sumup
 
          Rend      = dot_product(vec,vec)
          Rend_para = vec(1)*vec(1)
-         Rend_perp = vec(2)*vec(2) + vec(3)*vec(3)
+         Rend_perp = (vec(2)*vec(2) + vec(3)*vec(3))/2
 
          return
 

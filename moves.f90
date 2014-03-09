@@ -285,7 +285,6 @@ MODULE moves
          return
       endif
    endif
-<<<<<<< HEAD
 
 
    end subroutine pivot
@@ -293,17 +292,8 @@ MODULE moves
 !-----------------------------------------------------------------------!
 !                     REPTATION(SLITHER) MOVE                           !
 !-----------------------------------------------------------------------!
-
-=======
-endif
-  !write(6,*) 'accepted: overlap'  
-  
-! recenter
-!  call recenter(nbead)
-end subroutine pivot
-
->>>>>>> 463d955c169558c683e58f8d5bf607dc27c3ae2a
- SUBROUTINE slither(nbead,engmovetot, t, didimove)
+ 
+SUBROUTINE slither(nbead,engmovetot, t, didimove)
 
          IMPLICIT NONE
 
