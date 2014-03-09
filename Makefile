@@ -14,8 +14,8 @@ intel: $(FILES)
 
 #  ---------------------
 gnu:	$(FILES)
-##	/opt/local/bin/gfortran-mp-4.7  $(FILES) -o $(LOC)/$(EXE)
-	/usr/bin/gfortran -ggdb $(FILES) -o $(LOC)/$(EXE)
+	/opt/local/bin/gfortran-mp-4.7  $(FILES) -o $(LOC)/$(EXE)
+##	/usr/bin/gfortran -ggdb $(FILES) -o $(LOC)/$(EXE)
 #	gfortran -c -ggdb sumup.f90
 #	gfortran -c -ggdb moves.f90
 #	gfortran -c -ggdb main.f90
@@ -23,4 +23,4 @@ gnu:	$(FILES)
 
 #  ---------------------
 clean:
-	rm -f $(LOC)/$(EXE) *.mod *.o $(LOC)/*.out config.dat results.dat
+	rm -f $(LOC)/$(EXE) *.mod *.o $(LOC)/*.out movie.xyz polymer.dat config_final.dat config.dat results.dat dum.dat

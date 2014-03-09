@@ -24,7 +24,6 @@ MODULE moves
       allocate(z(nbead))
       allocate(jij(nbead,nbead))
 
-
       ! Decide to initialize randomly or in line
        if(initrandom .eqv. .false.) then
          do i=1,nbead
@@ -102,13 +101,11 @@ MODULE moves
          enddo
       enddo
 
-
    end subroutine random_init
 
 !------------------------------------------------------------------------------!
 !                                PIVOT MOVE                                    !
 !------------------------------------------------------------------------------!
-
    SUBROUTINE pivot(nbead,engmovetot,t,didimove)
 
    INTEGER                  :: i, j, k, nbead, beadrot, lcv, overlap
@@ -288,6 +285,7 @@ MODULE moves
          return
       endif
    endif
+<<<<<<< HEAD
 
 
    end subroutine pivot
@@ -296,6 +294,15 @@ MODULE moves
 !                     REPTATION(SLITHER) MOVE                           !
 !-----------------------------------------------------------------------!
 
+=======
+endif
+  !write(6,*) 'accepted: overlap'  
+  
+! recenter
+!  call recenter(nbead)
+end subroutine pivot
+
+>>>>>>> 463d955c169558c683e58f8d5bf607dc27c3ae2a
  SUBROUTINE slither(nbead,engmovetot, t, didimove)
 
          IMPLICIT NONE
