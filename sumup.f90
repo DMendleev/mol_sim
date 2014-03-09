@@ -18,7 +18,7 @@ MODULE sumup
       INTEGER      :: totbead, i, j, midbead, rx
       REAL         :: toten, period, c, Amp, midbox
      
-      Amp   = -20.0 
+      Amp   = -50.0 
       toten = 0.0
       
       if (mono) then
@@ -28,19 +28,19 @@ MODULE sumup
       !For diblock energy divide polymer into two types of beads (A and B) and have them interact with a sine-wave potential
       else if (diblock) then
               midbead = totbead/2
-              midbox  = real(L-1)/2
-              period = 2*pi/(totbead -1)
+          !    midbox  = real(L-1)/2
+              period = 2*pi/(totbead)
   
               do i=1, totbead
 
                  if(i<=midbead)then
                     c = real(x(i))/real(L)
                     rx = x(i) - floor(c)*L
-                    toten = toten + Amp*sin(rx*period)
+                    toten = toten + Amp*sin((rx+0.5)*period)
                  else
                     c = real(x(i))/real(L)
                     rx = x(i) - floor(c)*L
-                    toten = toten - Amp*sin(rx*period)
+                    toten = toten - Amp*sin((rx+0.5)*period)
                 endif
 
               enddo

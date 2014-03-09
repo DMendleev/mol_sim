@@ -1,0 +1,15 @@
+ -------------------------------------------------------------
+                            RESULTS                           
+ -------------------------------------------------------------
+ |  1. Seed                              =         1234
+ |  2. Temperature [J/kb]                =    1.00000000    
+ |  3. Number of Steps                   =      1000000
+ |  4. Energy                            =   -150.214844    
+ |  5. Rg2  - entire chain               =    17.8815174    
+ |  6. Rg2  - parallel to field          =    16.4509068    
+ |  7. Rg2  - perpendicular to field     =   0.715266466    
+ |  8. Rend - entire chain               =    115.496002    
+ |  9. Rend - parallel to field          =    102.533401    
+ | 10. Rend - perpendicular to field     =    6.48130035    
+ | 11. Acceptance Percentage             =    18.4451008    
+ ----- --------------------------------------------------------

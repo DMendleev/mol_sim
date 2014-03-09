@@ -360,6 +360,8 @@ SUBROUTINE slither(nbead,engmovetot, t, didimove)
               do j=i+1,nbead
                  if(rx_trial(i).eq.rx_trial(j).and.ry_trial(i).eq.ry_trial(j).and.rz_trial(i).eq.rz_trial(j))then
                     saw = 1
+                 !   write(*,*) i, j
+                 !   stop
                  endif
               end do
            end do

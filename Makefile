@@ -1,7 +1,7 @@
 EXE = polymer.exe
 FILES = variables.f90 util_random.f90 util.f90 sumup.f90 moves.f90 main.f90
 LOC = .
-
+FFLAG = O3
 #  ---------------------
 intel: $(FILES)
 	ifort $(FILES) -o $(LOC)/$(EXE)
@@ -15,11 +15,11 @@ intel: $(FILES)
 #  ---------------------
 gnu:	$(FILES)
 ##	/opt/local/bin/gfortran-mp-4.7  $(FILES) -o $(LOC)/$(EXE)
-	/usr/bin/gfortran -ggdb $(FILES) -o $(LOC)/$(EXE)
-#	gfortran -c -ggdb sumup.f90
-#	gfortran -c -ggdb moves.f90
-#	gfortran -c -ggdb main.f90
-#	gfortran *.o -o -ggdb $(LOC)/$(EXE)
+	/usr/bin/gfortran -g -$(FFLAG) $(FILES) -o $(LOC)/$(EXE)
+#	gfortran -c -g -$(FFLAG) sumup.f90
+#	gfortran -c -g -$(FFLAG) moves.f90
+#	gfortran -c -g -$(FFLAG) main.f90
+#	gfortran *.o -o -g -$(FFLAG) $(LOC)/$(EXE)
 
 #  ---------------------
 clean:

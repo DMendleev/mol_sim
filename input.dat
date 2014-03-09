@@ -1,5 +1,5 @@
 random seed 
-23
+1234
 nstep (Number of steps)
 1000000
 t (Temperature / k_b)
@@ -11,7 +11,7 @@ linit (True = initialize, false = read from config.dat)
 initrandom(False = initiate as a line, True = initiate with random walk)
 .true.
 pmreptation ### pmpivot
-   0.5		  1.0
+  0.5		  1.0
 mono ### diblock ### triblock
 .false.   .true.      .false.
 sample (how many steps in between configurations used for data)
